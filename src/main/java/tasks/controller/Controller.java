@@ -86,6 +86,19 @@ public class Controller {
         NewEditController.setClickedButton((Button) source);
 
         try {
+            Object selectedItem = mainTable.getSelectionModel().getSelectedItem();
+            Task selectedTask = null;
+            if (((Button) source).getId().equals("btnEdit")) {
+                if (selectedItem == null) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Eroare la editare");
+                    alert.setHeaderText("Niciun Task selectat");
+                    alert.setContentText("Selectati un Task pentru a-l putea edita");
+                    alert.show();
+                    return;
+                }
+                selectedTask = (Task)selectedItem;
+            }
             editNewStage = new Stage();
             NewEditController.setCurrentStage(editNewStage);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/new-edit-task.fxml"));
@@ -93,7 +106,7 @@ public class Controller {
             NewEditController editCtrl = loader.getController();
             editCtrl.setService(service);
             editCtrl.setTasksList(tasksList);
-            editCtrl.setCurrentTask((Task)mainTable.getSelectionModel().getSelectedItem());
+            editCtrl.setCurrentTask(selectedTask);
             editNewStage.setScene(new Scene(root, 600, 350));
             editNewStage.setResizable(false);
             editNewStage.initOwner(Main.primaryStage);

@@ -78,7 +78,7 @@ public class NewEditController {
     public void setCurrentTask(Task task){
         this.currentTask=task;
         switch (clickedButton.getId()){
-            case  "btnNew" : initNewWindow("New Task");
+            case "btnNew" : initNewWindow("New Task");
                 break;
             case "btnEdit" : initEditWindow("Edit Task");
                 break;
@@ -103,6 +103,7 @@ public class NewEditController {
     }
 
     private void initEditWindow(String title){
+
         currentStage.setTitle(title);
         fieldTitle.setText(currentTask.getTitle());
         datePickerStart.setValue(dateService.getLocalDateValueFromDate(currentTask.getStartTime()));

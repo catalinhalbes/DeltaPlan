@@ -27,9 +27,7 @@ public class Task implements Serializable {
             throw new IllegalArgumentException("Time cannot be negative");
         }
         this.title = title;
-        this.time = time;
-        this.start = time;
-        this.end = time;
+        setTime(time);
     }
     public Task(String title, Date start, Date end, int interval){
         if (start.getTime() < 0 || end.getTime() < 0) {
@@ -41,10 +39,7 @@ public class Task implements Serializable {
             throw new IllegalArgumentException("interval should me > 1");
         }
         this.title = title;
-        this.start = start;
-        this.end = end;
-        this.interval = interval;
-        this.time = start;
+        setTime(start, end, interval);
     }
 
     public String getTitle() {
