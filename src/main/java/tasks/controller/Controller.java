@@ -14,9 +14,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 import tasks.model.Task;
-import tasks.services.DateService;
+import tasks.utils.DateUtils;
 import tasks.services.TaskIO;
-import tasks.services.TasksService;
+import tasks.utils.TasksUtils;
 import tasks.view.Main;
 
 import java.io.IOException;
@@ -27,8 +27,8 @@ import java.util.Date;
 public class Controller {
     private static final Logger log = Logger.getLogger(Controller.class.getName());
     public ObservableList<Task> tasksList;
-    TasksService service;
-    DateService dateService;
+    TasksUtils service;
+    DateUtils dateUtils;
 
     public static Stage editNewStage;
     public static Stage infoStage;
@@ -54,9 +54,9 @@ public class Controller {
     @FXML
     private TextField fieldTimeTo;
 
-    public void setService(TasksService service){
+    public void setService(TasksUtils service){
         this.service=service;
-        this.dateService=new DateService(service);
+        this.dateUtils =new DateUtils(service);
         this.tasksList=service.getObservableList();
         updateCountLabel(tasksList);
         tasks.setItems(tasksList);
@@ -152,8 +152,8 @@ public class Controller {
         updateCountLabel(observableTasks);
     }
     private Date getDateFromFilterField(LocalDate localDate, String time){
-        Date date = dateService.getDateValueFromLocalDate(localDate);
-        return dateService.getDateMergedWithTime(time, date);
+        Date date = dateUtils.getDateValueFromLocalDate(localDate);
+        return dateUtils.getDateMergedWithTime(time, date);
     }
 
 

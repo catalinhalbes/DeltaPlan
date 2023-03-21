@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DateServiceTest {
+class DateUtilsTest {
 
     @BeforeEach
     void setUp() {
