@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Task implements Serializable, Cloneable {
+public class Task implements Serializable {
     private String title;
     private Date time;
     private Date start;
@@ -170,14 +170,6 @@ public class Task implements Serializable, Cloneable {
                 ", interval=" + interval +
                 ", active=" + active +
                 '}';
-    }
-    @Override
-    protected Task clone() throws CloneNotSupportedException {
-        Task task  = (Task)super.clone();
-        task.time = (Date)this.time.clone();
-        task.start = (Date)this.start.clone();
-        task.end = (Date)this.end.clone();
-        return task;
     }
 }
 
