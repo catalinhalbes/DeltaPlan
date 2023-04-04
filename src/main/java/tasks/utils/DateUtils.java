@@ -26,10 +26,21 @@ public class DateUtils {
         return Date.from(instant);
     }
     public Date getDateMergedWithTime(String time, Date noTimeDate) {//to retrieve Date object from both DatePicker and time field
+        final Date epochDate = new GregorianCalendar(1970, Calendar.JANUARY, 1, 0, 0).getTime();
+
+        if (noTimeDate.before(epochDate))
+            throw new IllegalArgumentException("date out of bound");
+
         String[] units = time.split(":");
+        if (units.length != 2)
+            throw new IllegalArgumentException("invalid time format");
+
         int hour = Integer.parseInt(units[0]);
         int minute = Integer.parseInt(units[1]);
-        if (hour > HOURS_IN_A_DAY || minute > MINUTES_IN_HOUR) throw new IllegalArgumentException("time unit exceeds bounds");
+
+        if (hour >= HOURS_IN_A_DAY || minute >= MINUTES_IN_HOUR || hour < 0 || minute < 0)
+            throw new IllegalArgumentException("time unit exceeds bounds");
+
         Calendar calendar = GregorianCalendar.getInstance();
         calendar.setTime(noTimeDate);
         calendar.set(Calendar.HOUR_OF_DAY, hour);
