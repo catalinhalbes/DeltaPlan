@@ -37,4 +37,26 @@ class DateUtilsTest {
         // assert
         assertEquals(expectedDate, date);
     }
+
+    @Test
+    void getDateMergedWithTimeInvalidHourMinuteAndDateThrows() {
+        // arrange
+        String time = "54:79";
+        Date noTimeDate = new GregorianCalendar(1900, Calendar.JANUARY, 1).getTime();
+
+        // act
+        // assert
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
+    }
+
+    @Test
+    void getDateMergedWithTimeInvalidTimeThrows() {
+        // arrange
+        String time = "asd";
+        Date noTimeDate = new GregorianCalendar(2023, Calendar.MARCH, 31).getTime();
+
+        // act
+        // assert
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
+    }
 }
