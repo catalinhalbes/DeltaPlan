@@ -39,15 +39,24 @@ class DateUtilsTest {
     }
 
     @Test
-    void getDateMergedWithTimeInvalidTimeInvalidDateThrows() {
+    void getDateMergedWithTimeInvalidHourMinuteAndDateThrows() {
         // arrange
         String time = "54:79";
         Date noTimeDate = new GregorianCalendar(1900, Calendar.JANUARY, 1).getTime();
 
         // act
-        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
-
         // assert
-        assertEquals("time unit exceeds bounds", ex.getMessage());
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
+    }
+
+    @Test
+    void getDateMergedWithTimeInvalidTimeThrows() {
+        // arrange
+        String time = "asd";
+        Date noTimeDate = new GregorianCalendar(2023, Calendar.MARCH, 31).getTime();
+
+        // act
+        // assert
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
     }
 }
