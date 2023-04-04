@@ -37,4 +37,17 @@ class DateUtilsTest {
         // assert
         assertEquals(expectedDate, date);
     }
+
+    @Test
+    void getDateMergedWithTimeInvalidTimeInvalidDateThrows() {
+        // arrange
+        String time = "54:79";
+        Date noTimeDate = new GregorianCalendar(1900, Calendar.JANUARY, 1).getTime();
+
+        // act
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
+
+        // assert
+        assertEquals("time unit exceeds bounds", ex.getMessage());
+    }
 }
