@@ -1,16 +1,19 @@
 package tasks.utils;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class DateUtilsTest {
     private DateUtils dateUtils;
     private TasksUtils mockTaskUtils;
@@ -24,7 +27,38 @@ class DateUtilsTest {
     void tearDown() {
     }
 
+    private static Stream<Arguments> getDateMergedWithTimeProvideValidParams() {
+        return Stream.of(
+                Arguments.of("8:00",
+                        new GregorianCalendar(2023, Calendar.MARCH, 31).getTime(),
+                        new GregorianCalendar(2023, Calendar.MARCH, 31, 8, 0).getTime()),
+                Arguments.of("0:0",
+                        new GregorianCalendar(1970, Calendar.JANUARY, 1, 1, 1).getTime(),
+                        new GregorianCalendar(1970, Calendar.JANUARY, 1, 0, 0).getTime()),
+                Arguments.of("1:1",
+                        new GregorianCalendar(1970, Calendar.JANUARY, 2).getTime(),
+                        new GregorianCalendar(1970, Calendar.JANUARY, 2, 1, 1).getTime())
+        );
+    }
+
+    @Order(1)
+    @ParameterizedTest
+    @MethodSource("getDateMergedWithTimeProvideValidParams")
+    @DisplayName("getDateMergedWithTimeValid valid parameters")
+    @Tag("Valid")
+    void getDateMergedWithTimeValid(String time, Date noTimeDate, Date expectedDate) {
+        //act
+        Date date = dateUtils.getDateMergedWithTime(time, noTimeDate);
+
+        // assert
+        assertEquals(expectedDate, date);
+    }
+
+    @Order(2)
     @Test
+    @DisplayName("getDateMergedWithTimeValid valid time and date representatives")
+    @Tag("Valid")
+    @Tag("ECP")
     void getDateMergedWithTimeECPValidInputReturns() {
         // arrange
         String time = "8:00";
@@ -38,40 +72,11 @@ class DateUtilsTest {
         assertEquals(expectedDate, date);
     }
 
+    @Order(3)
     @Test
-    void getDateMergedWithTimeECPInvalidHourMinuteAndDateThrows() {
-        // arrange
-        String time = "54:79";
-        Date noTimeDate = new GregorianCalendar(1900, Calendar.JANUARY, 1).getTime();
-
-        // act
-        // assert
-        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
-    }
-
-    @Test
-    void getDateMergedWithTimeECPInvalidTimeThrows() {
-        // arrange
-        String time = "asd";
-        Date noTimeDate = new GregorianCalendar(2023, Calendar.MARCH, 31).getTime();
-
-        // act
-        // assert
-        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
-    }
-
-    @Test
-    void getDateMergedWithTimeBVAInvalidHourThrows1() {
-        // arrange
-        String time = "-1:15";
-        Date noTimeDate = new GregorianCalendar(2023, Calendar.APRIL, 4).getTime();
-
-        // act
-        // assert
-        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
-    }
-
-    @Test
+    @DisplayName("getDateMergedWithTimeValid valid hour, minute and date lower boundary")
+    @Tag("Valid")
+    @Tag("BVA")
     void getDateMergedWithTimeBVAValidReturns1() {
         // arrange
         String time = "0:0";
@@ -85,7 +90,11 @@ class DateUtilsTest {
         assertEquals(expectedDate, date);
     }
 
+    @Order(4)
     @Test
+    @DisplayName("getDateMergedWithTimeValid valid hour, minute and date lower boundary")
+    @Tag("Valid")
+    @Tag("BVA")
     void getDateMergedWithTimeBVAValidReturns2() {
         // arrange
         String time = "1:1";
@@ -99,7 +108,56 @@ class DateUtilsTest {
         assertEquals(expectedDate, date);
     }
 
+    @Order(5)
     @Test
+    @DisplayName("getDateMergedWithTimeValid invalid hour, minute and date representatives")
+    @Tag("Invalid")
+    @Tag("ECP")
+    void getDateMergedWithTimeECPInvalidHourMinuteAndDateThrows() {
+        // arrange
+        String time = "54:79";
+        Date noTimeDate = new GregorianCalendar(1900, Calendar.JANUARY, 1).getTime();
+
+        // act
+        // assert
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
+    }
+
+    @Order(6)
+    @Test
+    @DisplayName("getDateMergedWithTimeValid valid time format")
+    @Tag("Invalid")
+    @Tag("ECP")
+    void getDateMergedWithTimeECPInvalidTimeThrows() {
+        // arrange
+        String time = "asd";
+        Date noTimeDate = new GregorianCalendar(2023, Calendar.MARCH, 31).getTime();
+
+        // act
+        // assert
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
+    }
+
+    @Order(7)
+    @Test
+    @DisplayName("getDateMergedWithTimeValid invalid hour lower boundary")
+    @Tag("Invalid")
+    @Tag("BVA")
+    void getDateMergedWithTimeBVAInvalidHourThrows1() {
+        // arrange
+        String time = "-1:15";
+        Date noTimeDate = new GregorianCalendar(2023, Calendar.APRIL, 4).getTime();
+
+        // act
+        // assert
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
+    }
+
+    @Order(8)
+    @Test
+    @DisplayName("getDateMergedWithTimeValid invalid hour upper boundary")
+    @Tag("Invalid")
+    @Tag("BVA")
     void getDateMergedWithTimeBVAInvalidHourThrows2() {
         // arrange
         String time = "24:12";
@@ -110,7 +168,11 @@ class DateUtilsTest {
         Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
     }
 
+    @Order(9)
     @Test
+    @DisplayName("getDateMergedWithTimeValid invalid minute upper boundary")
+    @Tag("Invalid")
+    @Tag("BVA")
     void getDateMergedWithTimeBVAInvalidMinutesThrows1() {
         // arrange
         String time = "18:60";
@@ -121,7 +183,41 @@ class DateUtilsTest {
         Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
     }
 
+    @Order(10)
     @Test
+    @DisplayName("getDateMergedWithTimeValid invalid minute lower boundary")
+    @Tag("Invalid")
+    @Tag("BVA")
+    void getDateMergedWithTimeBVAInvalidMinutesThrows2() {
+        // arrange
+        String time = "19:-1";
+        Date noTimeDate = new GregorianCalendar(2023, Calendar.APRIL, 4).getTime();
+
+        // act
+        // assert
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
+    }
+
+    @Order(11)
+    @Test
+    @DisplayName("getDateMergedWithTimeValid invalid date lower boundary")
+    @Tag("Invalid")
+    @Tag("BVA")
+    void getDateMergedWithTimeBVAInvalidDateThrows() {
+        // arrange
+        String time = "02:12";
+        Date noTimeDate = new GregorianCalendar(1969, Calendar.DECEMBER, 31).getTime();
+
+        // act
+        // assert
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
+    }
+
+    @Order(12)
+    @Test
+    @DisplayName("getDateMergedWithTimeValid valid hour, minute and date upper boundary")
+    @Tag("Valid")
+    @Tag("BVA")
     void getDateMergedWithTimeBVAValidReturns3() {
         // arrange
         String time = "23:59";
@@ -144,29 +240,11 @@ class DateUtilsTest {
         assertEquals(expectedDate, date);
     }
 
+    @Order(13)
     @Test
-    void getDateMergedWithTimeBVAInvalidMinutesThrows2() {
-        // arrange
-        String time = "19:-1";
-        Date noTimeDate = new GregorianCalendar(2023, Calendar.APRIL, 4).getTime();
-
-        // act
-        // assert
-        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
-    }
-
-    @Test
-    void getDateMergedWithTimeBVAInvalidDateThrows() {
-        // arrange
-        String time = "02:12";
-        Date noTimeDate = new GregorianCalendar(1969, Calendar.DECEMBER, 31).getTime();
-
-        // act
-        // assert
-        Exception ex = assertThrows(IllegalArgumentException.class, () -> dateUtils.getDateMergedWithTime(time, noTimeDate));
-    }
-
-    @Test
+    @DisplayName("getDateMergedWithTimeValid valid date upper boundary")
+    @Tag("Valid")
+    @Tag("BVA")
     void getDateMergedWithTimeBVAValidReturns4() {
         // arrange
         String time = "19:35";
