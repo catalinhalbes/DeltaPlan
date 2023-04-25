@@ -50,7 +50,7 @@ class ArrayTaskListTest {
     }
 
     @Test
-    void testRemove_TaskFound_ReturnsFalse() {
+    void testRemove_TaskFound_ReturnsTrue() {
         // arrange
         atl.add(new Task("task1", date));
         atl.add(new Task("task2", date));
