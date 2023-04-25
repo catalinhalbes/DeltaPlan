@@ -76,8 +76,7 @@ public class ArrayTaskList extends TaskList{
         }
         if (indexOfTaskToDelete >= 0){
             this.numberOfTasks--;
-            System.arraycopy(tasks, indexOfTaskToDelete+1,tasks,indexOfTaskToDelete,
-                    numberOfTasks-indexOfTaskToDelete+1);
+            System.arraycopy(tasks, indexOfTaskToDelete+1,tasks,indexOfTaskToDelete, numberOfTasks-indexOfTaskToDelete+1);
             return true;
         }
         return false;
