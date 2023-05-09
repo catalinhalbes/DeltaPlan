@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TaskIsolationTest {
 
     @Test
-    void testCreate_Task() {
+    public void testCreate_Task() {
         // arrange
         Date date = new GregorianCalendar(2023, Calendar.MARCH, 31).getTime();
         Task task = new Task("task1", date);
@@ -24,7 +24,7 @@ class TaskIsolationTest {
     }
 
     @Test
-    void testSetTime_Task() {
+    public void testSetTime_Task() {
         // arrange
         Date date = new GregorianCalendar(2023, Calendar.MARCH, 31).getTime();
         Task task = new Task("task1", date);

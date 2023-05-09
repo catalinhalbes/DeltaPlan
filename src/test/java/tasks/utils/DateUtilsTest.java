@@ -18,13 +18,13 @@ class DateUtilsTest {
     private DateUtils dateUtils;
     private TasksUtils mockTaskUtils;
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         mockTaskUtils = mock(TasksUtils.class);
         dateUtils = new DateUtils(mockTaskUtils);
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
     }
 
     private static Stream<Arguments> getDateMergedWithTimeProvideValidParams() {
@@ -46,7 +46,7 @@ class DateUtilsTest {
     @MethodSource("getDateMergedWithTimeProvideValidParams")
     @DisplayName("getDateMergedWithTimeValid valid parameters")
     @Tag("Valid")
-    void getDateMergedWithTimeValid(String time, Date noTimeDate, Date expectedDate) {
+    public void getDateMergedWithTimeValid(String time, Date noTimeDate, Date expectedDate) {
         //act
         Date date = dateUtils.getDateMergedWithTime(time, noTimeDate);
 
@@ -59,7 +59,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid valid time and date representatives")
     @Tag("Valid")
     @Tag("ECP")
-    void getDateMergedWithTimeECPValidInputReturns() {
+    public void getDateMergedWithTimeECPValidInputReturns() {
         // arrange
         String time = "8:00";
         Date noTimeDate = new GregorianCalendar(2023, Calendar.MARCH, 31).getTime();
@@ -77,7 +77,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid valid hour, minute and date lower boundary")
     @Tag("Valid")
     @Tag("BVA")
-    void getDateMergedWithTimeBVAValidReturns1() {
+    public void getDateMergedWithTimeBVAValidReturns1() {
         // arrange
         String time = "0:0";
         Date noTimeDate = new GregorianCalendar(1970, Calendar.JANUARY, 1, 1, 1).getTime();
@@ -95,7 +95,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid valid hour, minute and date lower boundary")
     @Tag("Valid")
     @Tag("BVA")
-    void getDateMergedWithTimeBVAValidReturns2() {
+    public void getDateMergedWithTimeBVAValidReturns2() {
         // arrange
         String time = "1:1";
         Date noTimeDate = new GregorianCalendar(1970, Calendar.JANUARY, 2).getTime();
@@ -113,7 +113,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid invalid hour, minute and date representatives")
     @Tag("Invalid")
     @Tag("ECP")
-    void getDateMergedWithTimeECPInvalidHourMinuteAndDateThrows() {
+    public void getDateMergedWithTimeECPInvalidHourMinuteAndDateThrows() {
         // arrange
         String time = "54:79";
         Date noTimeDate = new GregorianCalendar(1900, Calendar.JANUARY, 1).getTime();
@@ -128,7 +128,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid valid time format")
     @Tag("Invalid")
     @Tag("ECP")
-    void getDateMergedWithTimeECPInvalidTimeThrows() {
+    public void getDateMergedWithTimeECPInvalidTimeThrows() {
         // arrange
         String time = "asd";
         Date noTimeDate = new GregorianCalendar(2023, Calendar.MARCH, 31).getTime();
@@ -143,7 +143,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid invalid hour lower boundary")
     @Tag("Invalid")
     @Tag("BVA")
-    void getDateMergedWithTimeBVAInvalidHourThrows1() {
+    public void getDateMergedWithTimeBVAInvalidHourThrows1() {
         // arrange
         String time = "-1:15";
         Date noTimeDate = new GregorianCalendar(2023, Calendar.APRIL, 4).getTime();
@@ -158,7 +158,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid invalid hour upper boundary")
     @Tag("Invalid")
     @Tag("BVA")
-    void getDateMergedWithTimeBVAInvalidHourThrows2() {
+    public void getDateMergedWithTimeBVAInvalidHourThrows2() {
         // arrange
         String time = "24:12";
         Date noTimeDate = new GregorianCalendar(2023, Calendar.APRIL, 4).getTime();
@@ -173,7 +173,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid invalid minute upper boundary")
     @Tag("Invalid")
     @Tag("BVA")
-    void getDateMergedWithTimeBVAInvalidMinutesThrows1() {
+    public void getDateMergedWithTimeBVAInvalidMinutesThrows1() {
         // arrange
         String time = "18:60";
         Date noTimeDate = new GregorianCalendar(2023, Calendar.APRIL, 4).getTime();
@@ -188,7 +188,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid invalid minute lower boundary")
     @Tag("Invalid")
     @Tag("BVA")
-    void getDateMergedWithTimeBVAInvalidMinutesThrows2() {
+    public void getDateMergedWithTimeBVAInvalidMinutesThrows2() {
         // arrange
         String time = "19:-1";
         Date noTimeDate = new GregorianCalendar(2023, Calendar.APRIL, 4).getTime();
@@ -203,7 +203,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid invalid date lower boundary")
     @Tag("Invalid")
     @Tag("BVA")
-    void getDateMergedWithTimeBVAInvalidDateThrows() {
+    public void getDateMergedWithTimeBVAInvalidDateThrows() {
         // arrange
         String time = "02:12";
         Date noTimeDate = new GregorianCalendar(1969, Calendar.DECEMBER, 31).getTime();
@@ -218,7 +218,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid valid hour, minute and date upper boundary")
     @Tag("Valid")
     @Tag("BVA")
-    void getDateMergedWithTimeBVAValidReturns3() {
+    public void getDateMergedWithTimeBVAValidReturns3() {
         // arrange
         String time = "23:59";
 
@@ -245,7 +245,7 @@ class DateUtilsTest {
     @DisplayName("getDateMergedWithTimeValid valid date upper boundary")
     @Tag("Valid")
     @Tag("BVA")
-    void getDateMergedWithTimeBVAValidReturns4() {
+    public void getDateMergedWithTimeBVAValidReturns4() {
         // arrange
         String time = "19:35";
 

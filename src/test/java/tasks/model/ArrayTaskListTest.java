@@ -13,17 +13,17 @@ class ArrayTaskListTest {
     private Date date;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         date = new Date(0L);
         atl = new ArrayTaskList();
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
     }
 
     @Test
-    void testRemove_TaskNotFound_ReturnsFalse() {
+    public void testRemove_TaskNotFound_ReturnsFalse() {
         // arrange
         atl.add(new Task("task42", date));
         atl.add(new Task("task55", date));
@@ -37,7 +37,7 @@ class ArrayTaskListTest {
     }
 
     @Test
-    void testRemove_TaskNull_ReturnsFalse() {
+    public void testRemove_TaskNull_ReturnsFalse() {
         // arrange
         atl.add(new Task("task42", date));
         Task task = null;
@@ -50,7 +50,7 @@ class ArrayTaskListTest {
     }
 
     @Test
-    void testRemove_TaskFound_ReturnsTrue() {
+    public void testRemove_TaskFound_ReturnsTrue() {
         // arrange
         atl.add(new Task("task1", date));
         atl.add(new Task("task2", date));
@@ -64,7 +64,7 @@ class ArrayTaskListTest {
     }
 
     @Test
-    void testRemove_EmptyList_ReturnsFalse() {
+    public void testRemove_EmptyList_ReturnsFalse() {
         // arrange
         Task task = new Task("task1", date);
 
