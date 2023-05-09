@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 D:\.teme\VVSS\DeltaPlan\src\main\java\tasks\model\ArrayTaskList.java
 D:\.teme\VVSS\DeltaPlan\src\main\java\tasks\controller\Controller.java
 D:\.teme\VVSS\DeltaPlan\src\main\java\tasks\controller\Notificator.java
@@ -12,3 +13,19 @@ D:\.teme\VVSS\DeltaPlan\src\main\java\tasks\model\LinkedTaskList.java
 D:\.teme\VVSS\DeltaPlan\src\main\java\tasks\services\TaskIO.java
 D:\.teme\VVSS\DeltaPlan\src\main\java\tasks\controller\NewEditController.java
 D:\.teme\VVSS\DeltaPlan\src\main\java\module-info.java
+=======
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\services\TaskIO.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\utils\TasksUtils.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\model\Task.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\model\TasksOperations.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\controller\TaskInfoController.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\model\ArrayTaskList.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\model\LinkedTaskList.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\view\Main.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\model\TaskList.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\controller\Notificator.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\utils\DateUtils.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\controller\NewEditController.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\module-info.java
+C:\Users\Rares\Desktop\vvssproject\DeltaPlan\src\main\java\tasks\controller\Controller.java
+>>>>>>> Stashed changes
