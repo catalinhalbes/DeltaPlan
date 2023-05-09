@@ -51,4 +51,12 @@ public class TasksUtils {
 
         return filtered;
     }
+
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
+    public boolean removeTask(Task task) {
+        return tasks.remove(task);
+    }
 }
