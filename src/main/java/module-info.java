@@ -5,11 +5,11 @@ module tasks {
     requires log4j;
 
 
-    opens tasks.model to javafx.base;
+    opens tasks.model;
     exports tasks.model;
-    opens tasks.view to javafx.fxml;
+    opens tasks.view;
     exports tasks.view;
-    opens tasks.controller to javafx.fxml;
+    opens tasks.controller;
     exports tasks.controller;
     opens tasks.utils;
     exports tasks.utils;
