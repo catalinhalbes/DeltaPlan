@@ -14,11 +14,9 @@ class ArrayTaskListIsolationTest {
 
     private Task mockTask;
     private ArrayTaskList atl;
-    //private Date date;
 
     @BeforeEach
     public void setUp() {
-        //date = new Date(0L);
         mockTask = mock(Task.class);
         atl = new ArrayTaskList();
     }
