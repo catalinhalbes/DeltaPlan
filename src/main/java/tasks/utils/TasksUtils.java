@@ -7,6 +7,7 @@ import tasks.model.Task;
 import tasks.model.TasksOperations;
 
 import java.util.Date;
+import java.util.List;
 
 public class TasksUtils {
 
@@ -58,5 +59,9 @@ public class TasksUtils {
 
     public boolean removeTask(Task task) {
         return tasks.remove(task);
+    }
+
+    List<Task> getAllTasks() {
+        return tasks.getAll();
     }
 }
