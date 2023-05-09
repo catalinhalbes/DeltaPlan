@@ -3,7 +3,6 @@
 
 # Add all ide generated files
 .idea
-target
 01_Tasks.iml
 
 # Add logs
