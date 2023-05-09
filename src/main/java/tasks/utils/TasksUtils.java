@@ -61,7 +61,7 @@ public class TasksUtils {
         return tasks.remove(task);
     }
 
-    List<Task> getAllTasks() {
+    public List<Task> getAllTasks() {
         return tasks.getAll();
     }
 }

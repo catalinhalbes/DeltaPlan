@@ -14,9 +14,9 @@ class TaskIsolationTest {
     public void testCreate_Task() {
         // arrange
         Date date = new GregorianCalendar(2023, Calendar.MARCH, 31).getTime();
-        Task task = new Task("task1", date);
 
         // act
+        Task task = new Task("task1", date);
 
         // assert
         assertEquals(date, task.getTime() );
@@ -30,12 +30,10 @@ class TaskIsolationTest {
         Task task = new Task("task1", date);
 
         // act
-
         task.setActive(true);
 
         // assert
         assertTrue(task.isActive());
-        
     }
 
 }
