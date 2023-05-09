@@ -1,17 +1,15 @@
-package tasks.model;
+package tasks.utils;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import tasks.utils.TasksUtils;
-
-import java.util.Date;
+import tasks.model.ArrayTaskList;
+import tasks.model.Task;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
-public class TaskUtilsIntegrateArrayTaskList {
+public class TasksUtilsIntegrateArrayTaskList {
 
         private Task mockTask;
         private ArrayTaskList atl;

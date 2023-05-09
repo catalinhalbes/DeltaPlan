@@ -27,13 +27,14 @@ class TaskIsolationTest {
     public void testSetTime_Task() {
         // arrange
         Date date = new GregorianCalendar(2023, Calendar.MARCH, 31).getTime();
+        Date date2 = new GregorianCalendar(2020, Calendar.MARCH, 30).getTime();
         Task task = new Task("task1", date);
 
         // act
-        task.setActive(true);
+        task.setTime(date2);
 
         // assert
-        assertTrue(task.isActive());
+        assertEquals(date2, task.getTime());
     }
 
 }

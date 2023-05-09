@@ -1,19 +1,18 @@
-package tasks.model;
+package tasks.utils;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import tasks.utils.TasksUtils;
+import tasks.model.ArrayTaskList;
+import tasks.model.Task;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
-class TaskUtilIntegrateArrayTaskListAndTask {
+class TasksUtilsIntegrateArrayTaskListAndTask {
     private TasksUtils taskUtils;
     private ArrayTaskList arrayTaskList;
     private Date date;
