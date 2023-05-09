@@ -6,6 +6,9 @@
 target
 01_Tasks.iml
 
+# Add logs
+logs
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
